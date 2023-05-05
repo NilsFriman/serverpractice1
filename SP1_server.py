@@ -24,4 +24,3 @@ names = []
 def connection():
     while True:
         port, ip = server_socket.accept()
-        if ip in ipaddresses:
