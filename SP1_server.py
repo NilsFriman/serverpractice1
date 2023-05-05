@@ -12,13 +12,17 @@ server_socket.listen()
 
 clients = []
 
+print(host)
 
-
-# def message_sender(nickname):
-#     for client in clients:
-#         client.send()
+def message_sender(nickname):
+    for client in clients:
+        client.send()
 
 
 def connection():
     while True:
         conn, addr = server_socket.accept()
+        print(conn, addr)
+
+
+connection()
