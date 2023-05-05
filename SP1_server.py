@@ -17,14 +17,18 @@ ipaddresses = []
 names = []
 
 
-def message_sender(nickname):
+def message_sender(msg: str):
     for client in clients:
-        client.send()
+        client.send(msg.encode())
 
-def connection():
+def connections():
     while True:
         conn, addr = server_socket.accept()
-        conn.send(b"Your mom")
-        print(f"connection frmo {addr}{conn}")
 
-connection()
+        if conn not in users:
+            clients.append(conn)
+            ipaddresses.append(addr)
+
+        message_sender("Guest has entered the chat room")
+
+connections()
