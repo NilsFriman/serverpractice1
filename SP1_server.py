@@ -4,13 +4,16 @@ import threading
 
 
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-host = socket.gethostbyname(socket.gethostname())
-port = 1234
+server_host = socket.gethostbyname(socket.gethostname())
+server_port = 1234
 
-server_socket.bind((host, port))
+server_socket.bind((server_host, server_port))
 server_socket.listen()
 
 clients = []
+users = []
+ipaddresses = []
+names = []
 
 
 
@@ -18,7 +21,7 @@ clients = []
 #     for client in clients:
 #         client.send()
 
-
 def connection():
     while True:
-        conn, addr = server_socket.accept()
+        port, ip = server_socket.accept()
+        if ip in ipaddresses:
